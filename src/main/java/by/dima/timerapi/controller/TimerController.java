@@ -1,5 +1,6 @@
 package by.dima.timerapi.controller;
 
+import by.dima.timerapi.model.Timer;
 import by.dima.timerapi.service.TimerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +18,12 @@ public class TimerController {
     }
 
     @GetMapping(path = "/get/{timerId}")
-    public ResponseEntity getTime(@PathVariable int timerId) {
-        return new ResponseEntity(timerService.getById(timerId), HttpStatus.OK);
+    public ResponseEntity<Timer> getTime(@PathVariable int timerId) {
+        return new ResponseEntity<>(timerService.getById(timerId), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/create")
-    public ResponseEntity getTime(@RequestParam(name = "timer") long timer) {
-        return new ResponseEntity(timerService.create(timer), HttpStatus.OK);
+    @PostMapping(path = "/create")
+    public ResponseEntity<Integer> getTime(@RequestBody() Timer timer) {
+        return new ResponseEntity<>(timerService.create(timer), HttpStatus.OK);
     }
 }

@@ -1,6 +1,8 @@
 package by.dima.timerapi.service;
 
+import by.dima.timerapi.model.Timer;
+
 public interface TimerService {
-    long getById(int id);
-    int create(long dist);
+    Timer getById(int id);
+    int create(Timer timer);
 }
