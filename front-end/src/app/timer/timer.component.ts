@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import construct = Reflect.construct;
+import {Timer} from "../model/timer";
+import {TimerService} from "../service/timer.service";
 
 @Component({
   selector: 'app-timer',
@@ -8,18 +9,20 @@ import construct = Reflect.construct;
 })
 export class TimerComponent implements OnInit {
 
-  private dateTo: Date;
   private diff;
 
-  constructor() {
-    this.dateTo = new Date(2019, 7, 17);
-    this.diff = this.constructDiff(this.dateTo.getTime() - new Date().getTime());
+  private timer: Timer;
+
+  constructor(private timerService: TimerService) {
   }
 
   ngOnInit() {
-    setInterval(() => {
-      this.diff = this.constructDiff(this.dateTo.getTime() - new Date().getTime());
-    }, 1000);
+    this.timerService.get(12).subscribe(res => {
+      this.timer = res;
+        setInterval(() => {
+          this.diff = this.constructDiff(this.timer.diff - new Date().getTime());
+          }, 1000);
+    });
   }
 
   private constructDiff(timeInMs: number) {

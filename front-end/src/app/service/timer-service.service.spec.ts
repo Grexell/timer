@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TimerServiceService } from './timer-service.service';
+import { TimerService } from './timer.service';
 
-describe('TimerServiceService', () => {
+describe('TimerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TimerServiceService = TestBed.get(TimerServiceService);
+    const service: TimerService = TestBed.get(TimerService);
     expect(service).toBeTruthy();
   });
 });
