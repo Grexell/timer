@@ -1,0 +1,59 @@
+h1, label, button {
+    font-family: Lucida, Console, monospace;
+}
+
+div {
+    padding: 10px 15px;
+    min-width: 400px;
+    width: 100%;
+}
+
+div input, div textarea {
+    box-sizing: border-box;
+    float: right;
+    resize: none;
+    width: 70%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+div:after {
+    clear: right;
+}
+
+button {
+    position: relative;
+    margin-top: 10px;
+    background-color: transparent;
+    color: #fff;
+    padding: 5px 10px;
+    border: 2px solid #fff;
+    transition: color 2s;
+    cursor: pointer;
+}
+
+button:hover {
+    color: #000;
+}
+
+button:hover:before {
+    height: 100%;
+}
+
+button:before {
+    z-index: -1;
+    position: absolute;
+    top:0;
+    left: 0;
+    background-color: #fff;
+    content: '';
+    height: 0;
+    /*height: 100%;*/
+    width: 100%;
+    transition: height 2s;
+}
+
+button:focus, input:focus, textarea:focus {
+    outline: none;
+}
