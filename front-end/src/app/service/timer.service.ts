@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Timer} from "../model/timer";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Timer} from '../model/timer';
 
 @Injectable({
     providedIn: 'root'
@@ -15,11 +15,11 @@ export class TimerService {
     }
 
     public get(id: number): Observable<Timer> {
-        let url = this.GET_URL + id;
+        const url = this.GET_URL + id;
         return this.httpClient.get<Timer>(url);
     }
 
-    public create(timer: Timer): Observable<any> {
-        return this.httpClient.post(this.CREATE_URL, timer);
+    public create(timer: Timer): Observable<number> {
+        return this.httpClient.post<number>(this.CREATE_URL, timer);
     }
 }
