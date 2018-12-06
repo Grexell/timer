@@ -10,6 +10,7 @@ import {TimerService} from '../service/timer.service';
 export class CreateTimerComponent implements OnInit {
 
     date: Date = new Date();
+    dateSet = false;
 
     @Output() private timerCreated: EventEmitter<number>;
 
@@ -20,12 +21,24 @@ export class CreateTimerComponent implements OnInit {
     ngOnInit() {
     }
 
-    public setDate(dateString: string): boolean {
-        const data = dateString.split('[-\s:]+');
+    public setDate(dateString: string) {
+        const data = dateString.split(new RegExp('[\- .:]+'));
 
-        this.date = Date.apply(null, data);
-
-        return true;
+        const result = data.length > 0;
+        if (result) {
+            this.date = new Date(+data[0] ? +data[0] : new Date().getFullYear(),
+                +data[1] ? +data[1] - 1 : 0,
+                +data[2] ? +data[2] : 1,
+                +data[3] ? +data[3] : 0,
+                +data[4] ? +data[4] : 0,
+                +data[5] ? +data[5] : 0,
+                +data[6] ? +data[6] : 0);
+            console.log(this.date);
+            console.dir(data);
+            this.dateSet = true;
+        } else {
+            this.dateSet = false;
+        }
     }
 
     public createTimer(date: Date, message: string): boolean {

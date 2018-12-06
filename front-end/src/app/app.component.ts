@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'timer';
+  public log() {
+    console.log(11);
+  }
 }

@@ -8,8 +8,8 @@ import {Timer} from '../model/timer';
 })
 export class TimerService {
 
-    private readonly GET_URL = 'api/get/';
-    private readonly CREATE_URL = 'api/create';
+    private readonly GET_URL = 'http://localhost:8080/api/get/';
+    private readonly CREATE_URL = 'http://localhost:8080/api/create';
 
     constructor(private httpClient: HttpClient) {
     }

@@ -1,8 +1,8 @@
 <form (ngSubmit)="createTimer(date, messageInput.value)">
     <h1>TIMER</h1>
-    <div><label>Date: <input type="text" name="date" #dateInput/></label></div>
+    <div><label>Date: <input type="text" name="date" (input)="setDate($event.target.value)" /></label></div>
     <div><label>Message: <textarea name="message" rows="5" #messageInput></textarea></label></div>
     <div>
-        <button [disabled]="!setDate(dateInput.value)">CREATE</button>
+        <button [disabled]="!dateSet">CREATE</button>
     </div>
 </form>

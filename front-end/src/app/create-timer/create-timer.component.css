@@ -57,3 +57,8 @@ button:before {
 button:focus, input:focus, textarea:focus {
     outline: none;
 }
+
+button[disabled] {
+    border: 2px solid red;
+    background-color: rgba(0,0,0,.1);
+}

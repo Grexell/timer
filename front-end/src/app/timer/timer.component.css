@@ -11,3 +11,10 @@ h1{
   /*background: green;*/
   overflow: hidden;
 }
+
+div{
+  font-family: sans-serif;
+  font-size: 5em;
+  overflow: hidden;
+  max-width: 100%;
+}
