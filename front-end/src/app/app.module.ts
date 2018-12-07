@@ -5,17 +5,19 @@ import {AppComponent} from './app.component';
 import {TimerComponent} from './timer/timer.component';
 import {CreateTimerComponent} from './create-timer/create-timer.component';
 import {RoutingModule} from "./routing/routing.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         TimerComponent,
-        CreateTimerComponent
+        CreateTimerComponent,
+        DashboardComponent
     ],
     imports: [
-        BrowserModule, RoutingModule, FormsModule, HttpClientModule
+        BrowserModule, RoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

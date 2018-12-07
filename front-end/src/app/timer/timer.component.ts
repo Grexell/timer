@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Timer} from '../model/timer';
 import {TimerService} from '../service/timer.service';
 import {ActivatedRoute} from '@angular/router';
@@ -12,19 +12,27 @@ export class TimerComponent implements OnInit {
 
     private diff;
 
-    timer: Timer;
+    @Input() timer: Timer;
 
     constructor(private timerService: TimerService, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.timerService.get(+this.route.snapshot.paramMap.get('id')).subscribe(res => {
-            this.timer = res;
+        if (!this.timer) {
+            this.timerService.get(+this.route.snapshot.paramMap.get('id')).subscribe(res => {
+                this.timer = res;
+                this.init();
+            });
+        } else {
+            this.init();
+        }
+    }
+
+    private init() {
+        this.diff = this.constructDiff(this.timer.diff - new Date().getTime());
+        setInterval(() => {
             this.diff = this.constructDiff(this.timer.diff - new Date().getTime());
-            setInterval(() => {
-                this.diff = this.constructDiff(this.timer.diff - new Date().getTime());
-            }, 1000);
-        });
+        }, 1000);
     }
 
     private constructDiff(timeInMs: number) {

@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="loadTimer()">
+  <input name="id" placeholder="id" formControlName="id" autocomplete="off"/>
+  <button>ADD</button>
+</form>
+
+<div class="timer" *ngFor="let timer of timers">
+  <app-timer [timer]="timer"></app-timer>
+</div>
