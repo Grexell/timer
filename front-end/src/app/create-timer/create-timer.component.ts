@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Timer} from '../model/timer';
 import {TimerService} from '../service/timer.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-create-timer',
@@ -14,7 +15,7 @@ export class CreateTimerComponent implements OnInit {
 
     @Output() private timerCreated: EventEmitter<number>;
 
-    constructor(private timerService?: TimerService) {
+    constructor(private timerService?: TimerService, private router?: Router) {
         this.timerCreated = new EventEmitter<number>();
     }
 
@@ -43,7 +44,9 @@ export class CreateTimerComponent implements OnInit {
 
     public createTimer(date: Date, message: string): boolean {
         const timer = new Timer(message, date.getTime());
-        this.timerService.create(timer).subscribe((id) => this.timerCreated.emit(id));
+        this.timerService.create(timer).subscribe((id) => {
+            this.router.navigate(['/timer', id]);
+        });
         return false;
     }
 
